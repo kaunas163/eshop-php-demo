@@ -1,6 +1,7 @@
 <?php
 
 $basePage = "http://localhost/eshop-demo/";
+require_once("database.php");
 
 ?>
 

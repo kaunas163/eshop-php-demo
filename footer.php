@@ -12,3 +12,9 @@
     <script src="<?php echo $basePage; ?>assets/js/bootstrap.min.js"></script>
   </body>
 </html>
+
+<?php
+
+mysqli_close($conn);
+
+?>
