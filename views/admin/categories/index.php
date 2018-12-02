@@ -1,7 +1,7 @@
 <?php include("../../../header.php"); ?>
 
 <h1 class="display-3">Prekių kategorijos</h1>
-<p class="lead">Šios kategorijos matomos vartotojams.</p>
+<p class="lead">Koks nors paaiškinamasis tekstas.</p>
 <hr class="my-4">
 <p>
     <a href="new.php" class="btn btn-success">Nauja</a>
@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
     </table>
     <?php
 } else {
-    echo '<div class="col">Nieko nėra.</div>';
+    echo '<div class="row"><p>Nieko nėra.</p></div>';
 }
 
 ?>
