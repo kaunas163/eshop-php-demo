@@ -32,6 +32,9 @@ require_once("database.php");
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $basePage; ?>views/checkout/index.php">Krepšelis</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $basePage; ?>views/admin/index.php">Administravimas</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav mr-sm-2">
                     <li class="nav-item">
