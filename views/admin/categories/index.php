@@ -10,6 +10,20 @@
 <?php
 
 $sql = "SELECT `id`, `title`, `description`, `parent_category_id` FROM `categories`";
+
+// $sql = "SELECT t1.name AS lev1, t2.name as lev2, t3.name as lev3, t4.name as lev4
+//         FROM categories AS t1
+//         LEFT JOIN categories AS t2 ON t2.parent_category_id = t1.id
+//         LEFT JOIN categories AS t3 ON t3.parent_category_id = t2.id
+//         LEFT JOIN categories AS t4 ON t4.parent_category_id = t3.id
+//         WHERE t1.title = 'kompiuteriai';";
+
+// $sql = "SELECT t1.id, t1.title AS lev1, t2.id, t2.title as lev2, t3.id, t3.title as lev3, t4.id, t4.title as lev4
+//         FROM categories AS t1
+//         LEFT JOIN categories AS t2 ON t2.parent_category_id = t1.id
+//         LEFT JOIN categories AS t3 ON t3.parent_category_id = t2.id
+//         LEFT JOIN categories AS t4 ON t4.parent_category_id = t3.id";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
