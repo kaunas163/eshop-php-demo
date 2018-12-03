@@ -15,7 +15,23 @@
 
             <p><strong>ID:</strong> <?php echo $results['id']; ?></p>
             <p><strong>Aprašymas:</strong> <?php echo $results['description']; ?></p>
-            <p><strong>Tėvinė kategorija kuriai priklauso:</strong> <?php echo $results['parent_category_id']; ?></p>
+
+            <?php
+
+            if (!(empty($results['parent_category_id']) || $results['parent_category_id'] == 0)) {
+                $parentId = $results['parent_category_id'];
+                $sql = "SELECT title FROM categories WHERE id=$parentId";
+                $parentResults = $conn->query($sql);
+    
+                if ($parentResults->num_rows > 0) {
+                    $parent = $parentResults->fetch_assoc();
+                    ?>
+                        <p><strong>Tėvinė kategorija kuriai priklauso:</strong> <?php echo $parent['title']; ?></p>
+                    <?php
+                }
+            }
+
+            ?>
 
             <p><a href="index.php" class="btn btn-primary">Grįžti</a></p>
         <?php
