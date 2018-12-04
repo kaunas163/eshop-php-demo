@@ -24,6 +24,17 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+        if ($categoryId != 0) {
+            ?>
+                <div class="col-12">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <p class="card-text">Subkategorijos</p>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
         while($row = $result->fetch_assoc()) {
             ?>
                 <div class="col-4">
