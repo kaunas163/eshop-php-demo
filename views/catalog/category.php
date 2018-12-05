@@ -53,9 +53,9 @@
         while($row = $result->fetch_assoc()) {
             ?>
                 <div class="col-4">
-                    <div class="card bg-light mb-3">
+                    <div class="card text-white bg-success mb-3">
                         <div class="card-header">
-                            <a href="./category.php?id=<?php echo $row['id']; ?>">
+                            <a href="./category.php?id=<?php echo $row['id']; ?>" class="text-dark">
                                 <?php echo $row["title"]; ?>
                             </a>
                         </div>
