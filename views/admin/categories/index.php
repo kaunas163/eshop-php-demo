@@ -4,7 +4,8 @@
 <p class="lead">Koks nors paaiškinamasis tekstas.</p>
 <hr class="my-4">
 <p>
-    <a href="new.php" class="btn btn-success">Nauja</a>
+    <a href="../index.php" class="btn btn-primary">Atgal į administravimą</a>
+    <a href="new.php" class="btn btn-success">Nauja kategorija</a>
 </p>
 
 <?php
