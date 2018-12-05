@@ -4,9 +4,44 @@
 <p class="lead">Koks nors tekstas apie turimas prekes.</p>
 <hr class="my-4">
 
+<?php
+
+    $categoryId = 0;
+    $pageHeading = "";
+
+    if (isset($_GET['id'])) {
+        $categoryId = $_GET['id'];
+    }
+
+    $sql = "SELECT title, parent_category_id FROM categories WHERE id=$categoryId";
+    $current = $conn->query($sql);
+    $currentCategory = $current->fetch_assoc();
+
+    if ($current->num_rows > 0) {
+        if ($categoryId != 0) {
+            $pageHeading .= '"' . $currentCategory['title'] . '" subkategorijos:';
+        }
+    }
+
+    $sql = "SELECT `id`, `title`, `description`, `parent_category_id` FROM `categories` WHERE parent_category_id=$categoryId";
+    $result = $conn->query($sql);
+
+?>
+
 <div class="row">
     <div class="col">
-        <h4>Kategorijos</h4>
+        <?php
+            if ($current->num_rows > 0) {
+                if ($categoryId != 0) {
+                    ?>
+                        <p>
+                            <a href="category.php?id=<?php echo $currentCategory['parent_category_id']; ?>" class="btn btn-secondary">Grįžti</a>
+                        </p>
+                    <?php
+                }
+            }
+        ?>
+        <h4>Kategorijos <?php echo $pageHeading; ?></h4>
     </div>
 </div>
 
@@ -14,27 +49,7 @@
 
 <?php
 
-    $categoryId = 0;
-
-    if (isset($_GET['id'])) {
-        $categoryId = $_GET['id'];
-    }
-
-    $sql = "SELECT `id`, `title`, `description`, `parent_category_id` FROM `categories` WHERE parent_category_id=$categoryId";
-    $result = $conn->query($sql);
-
     if ($result->num_rows > 0) {
-        if ($categoryId != 0) {
-            ?>
-                <div class="col-12">
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <p class="card-text">Subkategorijos</p>
-                        </div>
-                    </div>
-                </div>
-            <?php
-        }
         while($row = $result->fetch_assoc()) {
             ?>
                 <div class="col-4">
