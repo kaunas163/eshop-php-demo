@@ -8,15 +8,12 @@
         $id = $_GET['id'];
     }
 
-    $sql = "SELECT id, title, description, price, category_id FROM products WHERE id=$id";
+    $sql = "SELECT products.id, products.title, products.description, products.price, products.category_id, categories.title AS category_title
+            FROM products
+            LEFT JOIN categories ON products.category_id = categories.id
+            WHERE products.id=$id";
     $results = $conn->query($sql);
     $product = $results->fetch_assoc();
-
-    $productCategoryId = $product['category_id'];
-
-    $sql = "SELECT title FROM categories WHERE id=$productCategoryId";
-    $results = $conn->query($sql);
-    $category = $results->fetch_assoc();
 
     if ($results->num_rows == 0) {
         header("Location: ../not-found.php");
@@ -44,7 +41,7 @@
         </p>
         <p>
             <strong>Priklauso kategorijai:</strong>
-            <a href="category.php?id=<?php echo $product['category_id']; ?>"><?php echo $category['title']; ?></a>
+            <a href="category.php?id=<?php echo $product['category_id']; ?>"><?php echo $product['category_title']; ?></a>
         </p>
     </div>
 </div>

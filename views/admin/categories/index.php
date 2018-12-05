@@ -42,8 +42,8 @@ if ($result->num_rows > 0) {
         ?>
             <tr>
                 <th scope="row"><?php echo $row['id']; ?></th>
-                <td><?php echo $row["title"]; ?></td>
-                <td>
+                <td scope="row"><?php echo $row["title"]; ?></td>
+                <td scope="row">
                     <a href="view.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary">Peržiūrėti</a>
                     <a href="edit.php?id=<?php echo $row["id"]; ?>" class="btn btn-warning">Atnaujinti</a>
                     <a href="delete.php?id=<?php echo $row["id"]; ?>" class="btn btn-danger">Šalinti</a>
