@@ -7,19 +7,19 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $results = $result->fetch_assoc();
+        $category = $result->fetch_assoc();
         ?>
-            <h1 class="display-3">Prekių kategorija: <?php echo $results['title']; ?></h1>
+            <h1 class="display-3">Prekių kategorija: <?php echo $category['title']; ?></h1>
             <p class="lead">Koks nors paaiškinamasis tekstas.</p>
             <hr class="my-4">
 
-            <p><strong>ID:</strong> <?php echo $results['id']; ?></p>
-            <p><strong>Aprašymas:</strong> <?php echo $results['description']; ?></p>
+            <p><strong>ID:</strong> <?php echo $category['id']; ?></p>
+            <p><strong>Aprašymas:</strong> <?php echo $category['description']; ?></p>
 
             <?php
 
-            if (!(empty($results['parent_category_id']) || $results['parent_category_id'] == 0)) {
-                $parentId = $results['parent_category_id'];
+            if (!(empty($category['parent_category_id']) || $category['parent_category_id'] == 0)) {
+                $parentId = $category['parent_category_id'];
                 $sql = "SELECT title FROM categories WHERE id=$parentId";
                 $parentResults = $conn->query($sql);
     
