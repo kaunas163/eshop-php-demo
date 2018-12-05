@@ -12,7 +12,7 @@
     if ($result->num_rows > 0) {
         $product = $result->fetch_assoc();
         ?>
-            <h1 class="display-3">Prekių kategorija: <?php echo $product['title']; ?></h1>
+            <h1 class="display-3">Prekė: <?php echo $product['title']; ?></h1>
             <p class="lead">Koks nors paaiškinamasis tekstas.</p>
             <hr class="my-4">
 
