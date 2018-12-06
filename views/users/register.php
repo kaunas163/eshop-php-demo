@@ -1,29 +1,39 @@
-<?php include("../../header.php"); ?>
-
 <?php
 
-    if (empty($_POST) === false)
+include("../../header.php");
+
+if (empty($_POST) === false)
+{
+    $required_fields = [
+        'inputUsername',
+        'inputPassword',
+        'inputConfirmPassword'
+    ];
+    
+    foreach ($_POST as $key => $value)
     {
-        $required_fields = [
-            'inputUsername',
-            'inputPassword',
-            'inputConfirmPassword'
-        ];
-        
-        foreach ($_POST as $key => $value)
+        if (empty($value) && in_array($key, $required_fields) === true)
         {
-            if (empty($value) && in_array($key, $required_fields) === true)
-            {
-                $errors[] = "Visi laukeliai yra privalomi.";
-                break 1;
-            }
-        }
-        
-        if (empty($errors) === true)
-        {
-            
+            $errors[] = "Visi laukeliai yra privalomi.";
+            break 1;
         }
     }
+    
+    if (empty($errors) === true)
+    {
+        if (user_exists($conn, $_POST['inputUsername']) === true) {
+            $errors[] = "Toks vartotojas jau yra.";
+        }
+
+        if (strlen($_POST['inputPassword']) < 6) {
+            $errors[] = "Slaptažodis turi būti ilgesnis nei 6 simboliai.";
+        }
+
+        if ($_POST['inputPassword'] !== $_POST['inputConfirmPassword']) {
+            $errors[] = "Slaptažodžiai nesutampa.";
+        }
+    }
+}
 
 ?>
 
@@ -31,7 +41,17 @@
 <p class="lead">Koks nors trumpas paaiškinamasis tekstas.</p>
 <hr class="my-4">
 
-<form action="" method="POST" role="form">
+<div class="row">
+    <div class="col text-danger">
+        <?php
+            foreach ($errors as $error) {
+                echo "<p>$error</p>";
+            }
+        ?>
+    </div>
+</div>
+
+<form action="register.php" method="POST">
     <div class="form-group">
         <label for="inputUsername">Prisijungimo vardas</label>
         <input type="text" class="form-control" id="inputUsername" name="inputUsername">
