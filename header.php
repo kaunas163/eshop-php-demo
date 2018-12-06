@@ -41,9 +41,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $basePage; ?>views/checkout/index.php">Krepšelis</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $basePage; ?>views/admin/index.php">Administravimas</a>
-                    </li>
+                    <?php
+                        if ($user_data['role'] == 'admin') {
+                            ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo $basePage; ?>views/admin/index.php">Administravimas</a>
+                                </li>
+                            <?php
+                        }
+                    ?>
                 </ul>
                 <ul class="navbar-nav mr-sm-2">
                     <?php
