@@ -60,7 +60,7 @@ $result = $conn->query($sql);
             ?>
         </select>
     </div>
-    <button type="submit" class="btn btn-success">Sukurti</button>
+    <button type="submit" class="btn btn-success">Atnaujinti</button>
     <a href="index.php" class="btn btn-secondary">Grįžti</a>
 </form>
 

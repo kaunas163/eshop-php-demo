@@ -11,16 +11,18 @@ if (empty($_POST) === false) {
 
     $title = $_POST['titleInput'];
     $description = $_POST['descriptionInput'];
-    $parentCategoryId = $_POST['parentCategoryIdInput'];
+    $price = $_POST['priceInput'];
+    $categoryId = $_POST['categoryIdInput'];
 
     if (empty($title)) {
         echo "<p>Pavadinimas neįvestas</p>";
     }
     else {
-        $sql = "UPDATE categories
+        $sql = "UPDATE products
                 SET title='$title',
                     description='$description',
-                    parent_category_id=$parentCategoryId
+                    price=$price,
+                    category_id=$categoryId
                 WHERE id=$id";
         $conn->query($sql);
         header("Location: index.php");

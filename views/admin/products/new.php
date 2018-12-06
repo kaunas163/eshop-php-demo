@@ -27,7 +27,6 @@ $result = $conn->query($sql);
     <div class="form-group">
         <label for="parentCategoryId">Kategorija kuriai priklauso</label>
         <select class="form-control" id="parentCategoryId" name="categoryIdInput">
-            <option value="0">---</option>
             <?php
                 if ($result->num_rows > 0) {
                     while($category = $result->fetch_assoc()) {
