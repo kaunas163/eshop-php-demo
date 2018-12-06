@@ -3,7 +3,7 @@
 <?php
 
 redirect_if_not_logged_in();
-redirect_if_not_admin();
+redirect_if_not_admin($user_data);
 
 $id = $_GET['id'];
 $sql = "SELECT title FROM products WHERE id=$id";

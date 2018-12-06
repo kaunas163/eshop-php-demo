@@ -3,7 +3,7 @@
 include("../../../header.php");
 
 redirect_if_not_logged_in();
-redirect_if_not_admin();
+redirect_if_not_admin($user_data);
 
 if (empty($_POST) === false) {
     $id = (int)$_GET['id'];
