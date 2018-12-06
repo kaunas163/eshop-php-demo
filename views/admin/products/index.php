@@ -1,6 +1,11 @@
 <?php include("../../../header.php"); ?>
 
-<?php redirect_if_not_logged_in(); ?>
+<?php
+
+redirect_if_not_logged_in();
+redirect_if_not_admin();
+
+?>
 
 <h1 class="display-3">Turimos prekės</h1>
 <p class="lead">Koks nors trumpas aprašymas.</p>

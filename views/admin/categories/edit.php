@@ -3,6 +3,7 @@
 <?php
 
 redirect_if_not_logged_in();
+redirect_if_not_admin();
 
 $id = $_GET['id'];
 $sql = "SELECT title FROM categories WHERE id=$id";

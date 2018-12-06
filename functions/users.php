@@ -66,3 +66,13 @@ function redirect_if_not_logged_in()
         exit();
     }
 }
+
+function redirect_if_not_admin() {
+    // $user = user_data($conn, $_SESSION['user_id']);
+    // echo $user['role'];
+    // if ($user['role'] != 'admin') {
+        // session_destroy();
+        // header('Location: http://localhost/eshop-demo/views/users/login.php');
+        // exit();
+    // }
+}
