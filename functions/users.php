@@ -75,3 +75,10 @@ function redirect_if_not_admin($user) {
         exit();
     }
 }
+
+function register_user($conn, $register_data) {
+    $register_data['password'] = md5($register_data['password']);
+    $fields = '`' . implode('`, `', array_keys($register_data)) . '`';
+    $data = '\'' . implode('\', \'', $register_data) . '\'';
+    $conn->query("INSERT INTO `users` ($fields) VALUES ($data)");
+}

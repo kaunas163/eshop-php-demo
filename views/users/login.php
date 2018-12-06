@@ -21,13 +21,13 @@ if (empty($_POST) === false)
     {
         $login = login($conn, $username, $password);
         
-        if($login === false)
+        if ($login === false)
         {
             $errors[] = "Blogi prisijungimo duomenys";
         }
         else {
             $_SESSION['user_id'] = $login;
-            header('Location: ' . $base_page);
+            header('Location: ' . $basePage);
             exit();
         }
     }
