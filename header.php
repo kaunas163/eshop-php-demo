@@ -1,7 +1,16 @@
 <?php
 
-$basePage = "http://localhost/eshop-demo/";
-require_once("database.php");
+    $basePage = "http://localhost/eshop-demo/";
+    require_once("database.php");
+    session_start();
+    require "functions/general.php";
+    require "functions/users.php";
+    error_reporting(0);
+
+    if (logged_in() === true)
+    {
+        $user_data = user_data($conn, $_SESSION['user_id'], 'id', 'username', 'password', 'role');
+    }
 
 ?>
 
@@ -37,12 +46,34 @@ require_once("database.php");
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-sm-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $basePage; ?>views/users/register.php">Registruotis</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $basePage; ?>views/users/login.php">Prisijungti</a>
-                    </li>
+                    <?php
+                        if(logged_in() === false)
+                        {
+                            ?>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo $basePage; ?>views/users/register.php">Registruotis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo $basePage; ?>views/users/login.php">Prisijungti</a>
+                                </li>
+
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo $basePage; ?>views/users/info.php">Mano profilis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo $basePage; ?>views/users/logout.php">Atsijungti</a>
+                                </li>
+
+                            <?php
+                        }
+                    ?>
                 </ul>
             </div>
         </div>

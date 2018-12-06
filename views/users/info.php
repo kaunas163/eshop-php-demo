@@ -1,6 +1,7 @@
 <?php include("../../header.php"); ?>
 
-<p>Userio "sfdsg" info</p>
-<p>afsgdfg</p>
+<h1 class="display-3">Vartotojo informacija</h1>
+<p class="lead">Koks nors trumpas paaiškinamasis tekstas.</p>
+<hr class="my-4">
 
 <?php include("../../footer.php"); ?>
