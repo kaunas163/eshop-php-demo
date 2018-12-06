@@ -2,6 +2,8 @@
 
 include("../../../header.php");
 
+redirect_if_not_logged_in();
+
 if (empty($_POST) === false) {
     $title = $_POST['titleInput'];
     $description = $_POST['descriptionInput'];

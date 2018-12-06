@@ -1,5 +1,7 @@
 <?php include("../../../header.php"); ?>
 
+<?php redirect_if_not_logged_in(); ?>
+
 <h1 class="display-3">Nauja prekių kategorija</h1>
 <p class="lead">Koks nors paaiškinamasis tekstas.</p>
 <hr class="my-4">

@@ -2,6 +2,8 @@
 
 <?php
 
+    redirect_if_not_logged_in();
+
     $id = $_GET['id'];
     $sql = "SELECT products.id, products.title, products.description, products.price, products.category_id, categories.title AS category
             FROM products

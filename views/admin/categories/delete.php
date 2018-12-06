@@ -2,6 +2,8 @@
 
 <?php
 
+redirect_if_not_logged_in();
+
 $id = $_GET['id'];
 $sql = "SELECT `title` FROM `categories` WHERE `id`=$id";
 $result = $conn->query($sql);

@@ -2,6 +2,8 @@
 
 include("../../../header.php");
 
+redirect_if_not_logged_in();
+
 $id = $_GET['id'];
 
 $sql = "DELETE FROM `categories` WHERE `id`=$id";

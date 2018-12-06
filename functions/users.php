@@ -62,7 +62,7 @@ function redirect_if_not_logged_in()
 {
     if(!logged_in())
     {
-        header('Location: '.$basePage.'views/users/login.php');
+        header('Location: http://localhost/eshop-demo/views/users/login.php');
         exit();
     }
 }
