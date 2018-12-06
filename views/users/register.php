@@ -25,6 +25,10 @@ if (empty($_POST) === false)
             $errors[] = "Toks vartotojas jau yra.";
         }
 
+        if (preg_match("/\\s/", $_POST['inputUsername']) == true) {
+            $errors[] = "Vartotojo varde negali būti tarpų.";
+        }
+
         if (strlen($_POST['inputPassword']) < 6) {
             $errors[] = "Slaptažodis turi būti ilgesnis nei 6 simboliai.";
         }
