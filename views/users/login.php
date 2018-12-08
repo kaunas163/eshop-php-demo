@@ -27,6 +27,7 @@ if (empty($_POST) === false)
         }
         else {
             $_SESSION['user_id'] = $login;
+            $_SESSION['cart'] = array();
             header('Location: ' . $basePage);
             exit();
         }

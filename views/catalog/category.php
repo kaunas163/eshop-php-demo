@@ -108,6 +108,18 @@ if ($categoryId != 0) {
                         </div>
                         <div class="card-footer text-muted">
                             <p>Kaina: <?php echo $product['price']; ?> eur</p>
+                            <?php
+                                if (logged_in()) {
+                                    ?>
+                                        <p>
+                                            <a href="add_to_basket.php?id=<?php echo $product['id']; ?>&title=<?php echo $product['title']; ?>&price=<?php echo $product['price']; ?>" class="btn btn-success">
+                                                Pridėti į krepšelį
+                                            </a>
+                                        </p>
+                                    <?php
+                                }
+                            ?>
+                            
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,16 @@
 <?php
 
     $basePage = "http://localhost/eshop-demo/";
-    require_once("database.php");
     session_start();
+    require_once("database.php");
     require "functions/general.php";
     require "functions/users.php";
-    error_reporting(0);
+    // error_reporting(0);
 
-    if (logged_in() === true)
-    {
+    if (logged_in() === true) {
         $user_data = user_data($conn, $_SESSION['user_id'], 'id', 'username', 'password', 'role');
+    } else {
+        $user_data = null;
     }
 
 ?>
@@ -53,7 +54,7 @@
                 </ul>
                 <ul class="navbar-nav mr-sm-2">
                     <?php
-                        if(logged_in() === false)
+                        if (logged_in() === false)
                         {
                             ?>
 
