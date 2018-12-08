@@ -1,14 +1,17 @@
-<?php include("../../header.php"); ?>
+<?php
 
-<?php redirect_if_not_logged_in(); ?>
+include("../../header.php");
+$_SESSION['payment_method'] = $_GET['payment_method'];
 
-<h1 class="display-3">Prekių krepšelis</h1>
+?>
+
+<h1 class="display-3">Užsakymo detalės</h1>
 <p class="lead">Koks nors paaiškinamasis tekstas.</p>
 <hr class="my-4">
 
 <div class="row">
     <div class="col">
-        <h4>Pasirinktos prekės</h4>
+        <h4>Prekės</h4>
         <?php
 
             if (count($_SESSION['cart']) > 0) {
@@ -55,10 +58,32 @@
     </div>
 </div>
 
+<?php
+
+$addressId = $_SESSION['address_id'];
+$sql = "SELECT id, city, postal, country, address_line FROM addresses WHERE id=$addressId";
+$result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+$fullAddress = $result["address_line"] . ", " . $result['city'] . ", " . $result['country'] . ", " . $result['postal'];
+
+?>
+
 <div class="row">
     <div class="col">
-        <a href="address.php" class="btn btn-primary">Pristatymo adresas ></a>
+        <h4>Pristatymo adresas</h4>
+        <p><?php echo $fullAddress; ?></p>
     </div>
 </div>
 
-<?php include("../../footer.php"); ?>
+<div class="row">
+    <div class="col">
+        <h4>Mokėjimo būdas</h4>
+        <p>
+        
+        </p>
+        <?php echo $_SESSION['payment_method']; ?>
+    </div>
+</div>
+
+<?php
+
+include("../../footer.php");
