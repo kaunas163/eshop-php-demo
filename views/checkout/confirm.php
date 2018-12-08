@@ -78,9 +78,26 @@ $fullAddress = $result["address_line"] . ", " . $result['city'] . ", " . $result
     <div class="col">
         <h4>Mokėjimo būdas</h4>
         <p>
-        
+            <?php
+                switch ($_SESSION['payment_method']) {
+                    case "cash":
+                        echo "Grynaisiais";
+                        break;
+                    case "bank":
+                        echo "Banko pavedimu";
+                        break;
+                    case "card":
+                        echo "Mokėjimo kortele";
+                        break;
+                }
+            ?>
         </p>
-        <?php echo $_SESSION['payment_method']; ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a href="create.php" class="btn btn-primary">Sukurti užsakymą</a>
     </div>
 </div>
 

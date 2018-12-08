@@ -55,10 +55,18 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col">
-        <a href="address.php" class="btn btn-primary">Pristatymo adresas ></a>
-    </div>
-</div>
+<?php
+
+    if (!empty($_SESSION['cart'])) {
+        ?>
+            <div class="row">
+                <div class="col">
+                    <p><a href="address.php" class="btn btn-primary">Pristatymo adresas ></a></p>
+                </div>
+            </div>
+        <?php
+    }
+
+?>
 
 <?php include("../../footer.php"); ?>
