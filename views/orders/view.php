@@ -40,9 +40,16 @@ $order = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 <div class="row">
     <div class="col">
         <h4>Užsakytos prekės</h4>
+        
         <?php
+            $sql = "SELECT products.id, products.title, products.price
+                    FROM products
+                    JOIN products_in_orders
+                    ON products_id=products.id
+                    WHERE orders_id=$order_id";
+            $result = $conn->query($sql);
 
-            if (count($_SESSION['cart']) > 0) {
+            if ($result->num_rows > 0) {
                 ?>
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
@@ -55,33 +62,25 @@ $order = mysqli_fetch_assoc(mysqli_query($conn, $sql));
                     </thead>
                     <tbody>
                 <?php
-                    foreach ($_SESSION['cart'] as $product) {
-                        echo "<tr>";
-                            foreach ($product as $key => $value) {
-                                ?>
-                                    <th scope="row"><?php echo $value; ?></th>
-                                <?php
-                            }
-                            ?>
-                                <td scope="row">
-                                    <a href="../catalog/product.php?id=<?php echo $product["id"]; ?>" class="btn btn-primary">Peržiūrėti</a>
-                                </td>
-                            </tr>
-                        <?php
-                    }
+                while($product = $result->fetch_assoc()) {
+                    ?>
+                        <tr>
+                            <th scope="row"><?php echo $product['id']; ?></th>
+                            <td scope="row" style="width: 40%"><?php echo $product["title"]; ?></td>
+                            <td scope="row"><?php echo $product["price"]; ?></td>
+                            <td scope="row">
+                                <a href="../catalog/product.php?id=<?php echo $product["id"]; ?>" class="btn btn-primary">Peržiūrėti</a>
+                            </td>
+                        </tr>
+                    <?php
+                }
                 ?>
                     </tbody>
                 </table>
                 <?php
             } else {
-                ?>
-                    <p>Vis dar nieko nepridėta</p>
-                    <p>
-                        <a href="../catalog/category.php" class="btn btn-primary">Žiūrėti katalogą</a>
-                    </p>
-                <?php
+                echo '<div class="row"><p>Nieko nėra.</p></div>';
             }
-
         ?>
     </div>
 </div>

@@ -25,6 +25,8 @@ if (mysqli_query($conn, $sql)) {
         }
     }
     $conn->query($sql);
+    $_SESSION['cart'] = array();
+    header("Location: ../orders/view.php?id=" . $orderId);
 }
 
 include("../../footer.php");

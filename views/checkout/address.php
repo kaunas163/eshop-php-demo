@@ -5,7 +5,7 @@
 <hr class="my-4">
 
 <p>
-    <a href="../addresses./new.php" class="btn btn-success">Naujas adresas</a>
+    <a href="../addresses/new.php" class="btn btn-success">Naujas adresas</a>
 </p>
 
 <?php
