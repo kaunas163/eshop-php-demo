@@ -9,6 +9,7 @@
 <div class="row">
     <div class="col">
         <a href="../addresses/index.php" class="btn btn-primary">Adresai</a>
+        <a href="../orders/index.php" class="btn btn-primary">Užsakymai</a>
     </div>
 </div>
 

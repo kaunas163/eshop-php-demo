@@ -1,17 +1,45 @@
 <?php
 
 include("../../header.php");
-$_SESSION['payment_method'] = $_GET['payment_method'];
+redirect_if_not_logged_in();
 
 ?>
 
-<h1 class="display-3">Užsakymo detalės</h1>
+<h1 class="display-3">Užsakymo informacija</h1>
 <p class="lead">Koks nors paaiškinamasis tekstas.</p>
 <hr class="my-4">
 
+<?php
+
+$user_id = $_SESSION['user_id'];
+$order_id = $_GET['id'];
+
+$sql = "SELECT id, created, status, address_id, payment_method FROM orders WHERE id=$order_id";
+$order = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+?>
+
 <div class="row">
     <div class="col">
-        <h4>Prekės</h4>
+        <p><strong>ID:</strong> <?php echo $order['id']; ?></p>
+        <p><strong>Sukurta:</strong> <?php echo $order['created']; ?></p>
+        <p><strong>Būsena:</strong> <?php echo $order['status']; ?></p>
+        <p>
+            <strong>Pristatymo adresas:</strong>
+            <a href="../addresses/view.php?id=<?php echo $order['address_id']; ?>" class="">
+                Žiūrėti
+            </a>
+        </p>
+        <p>
+            <strong>Mokėjimo būdas:</strong>
+            <?php echo payment_method_name($_SESSION['payment_method']); ?>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h4>Užsakytos prekės</h4>
         <?php
 
             if (count($_SESSION['cart']) > 0) {
@@ -58,39 +86,4 @@ $_SESSION['payment_method'] = $_GET['payment_method'];
     </div>
 </div>
 
-<?php
-
-$addressId = $_SESSION['address_id'];
-$sql = "SELECT id, city, postal, country, address_line FROM addresses WHERE id=$addressId";
-$result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-$fullAddress = $result["address_line"] . ", " . $result['city'] . ", " . $result['country'] . ", " . $result['postal'];
-
-?>
-
-<div class="row">
-    <div class="col">
-        <h4>Pristatymo adresas</h4>
-        <p><?php echo $fullAddress; ?></p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <h4>Mokėjimo būdas</h4>
-        <p>
-            <?php
-                echo payment_method_name($_SESSION['payment_method']);
-            ?>
-        </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <a href="create.php" class="btn btn-primary">Sukurti užsakymą</a>
-    </div>
-</div>
-
-<?php
-
-include("../../footer.php");
+<?php include("../../footer.php"); ?>
