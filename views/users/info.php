@@ -6,4 +6,10 @@
 <p class="lead">Koks nors trumpas paaiškinamasis tekstas.</p>
 <hr class="my-4">
 
+<div class="row">
+    <div class="col">
+        <a href="../addresses/index.php" class="btn btn-primary">Adresai</a>
+    </div>
+</div>
+
 <?php include("../../footer.php"); ?>
