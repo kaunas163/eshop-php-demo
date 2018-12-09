@@ -32,7 +32,7 @@ $order = mysqli_fetch_assoc(mysqli_query($conn, $sql));
         </p>
         <p>
             <strong>Mokėjimo būdas:</strong>
-            <?php echo payment_method_name($_SESSION['payment_method']); ?>
+            <?php echo payment_method_name($order['payment_method']); ?>
         </p>
     </div>
 </div>
